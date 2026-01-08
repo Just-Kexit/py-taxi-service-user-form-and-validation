@@ -1,4 +1,3 @@
-from gc import get_objects
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
@@ -8,7 +7,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Driver, Car, Manufacturer
-from .forms import DriverLicenseUpdateForm, CarForm
+from .forms import DriverLicenseUpdateForm, CarForm, DriverForm
 
 
 @login_required
@@ -105,7 +104,7 @@ class DriverDetailView(LoginRequiredMixin, generic.DetailView):
 class DriverCreateView(LoginRequiredMixin, generic.CreateView):
     model = Driver
     success_url = reverse_lazy("taxi:driver-list")
-    fields = "__all__"
+    form_class = DriverForm
 
 
 class DriverDeleteView(LoginRequiredMixin, generic.DeleteView):
