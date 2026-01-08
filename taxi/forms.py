@@ -8,7 +8,12 @@ from taxi.models import Car
 class DriverForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = get_user_model()
-        fields = UserCreationForm.Meta + ("username", "first_name", "last_name", "license_number")
+        fields = UserCreationForm.Meta + (
+            "username",
+            "first_name",
+            "last_name",
+            "license_number"
+        )
 
 
 class DriverLicenseUpdateForm(UserChangeForm):
