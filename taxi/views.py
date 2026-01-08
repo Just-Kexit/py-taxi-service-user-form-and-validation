@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from .models import Car, Manufacturer, Driver
+from .models import Car, Manufacturer
 from .forms import DriverLicenseUpdateForm, CarForm, DriverForm
 
 
@@ -96,7 +96,7 @@ class DriverListView(mixins.LoginRequiredMixin, generic.ListView):
 
 class DriverDetailView(mixins.LoginRequiredMixin, generic.DetailView):
     model = get_user_model()
-    queryset = Driver.objects.all().prefetch_related("cars__manufacturer")
+    queryset = get_user_model().objects.all().prefetch_related("cars__manufacturer")
 
 
 class DriverCreateView(mixins.LoginRequiredMixin, generic.CreateView):
